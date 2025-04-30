@@ -32,5 +32,8 @@ public class DeckTest {
             players[i].showCards();
             System.out.println();
         }
+
+        players[4].setRank();
+        System.out.println(players[4].getRank());
     }
 }
