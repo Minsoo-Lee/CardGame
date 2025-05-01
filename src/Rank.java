@@ -1,3 +1,5 @@
+import data.Grade;
+
 public class Rank {
     private Card highCard;
     private int grade;
@@ -13,15 +15,26 @@ public class Rank {
     }
 
     public void getGrade(Card[] cards) {
-        if (isOnePair(cards)) this.grade = 2;
+        if (isOnePair(cards)) this.grade = Grade.onepair;
         else {
             this.highCard = cards[0];
-            this.grade = 1;
+            this.grade = Grade.high;
         }
     }
 
     @Override
     public String toString() {
-        return "HighCard = " + this.highCard + "\ngrade = " + this.grade;
+        String[] grades = {
+                "high",
+                "onepair",
+                "twopair",
+                "triple",
+                "straight",
+                "flush",
+                "fullHouse",
+                "fourCards",
+                "sFlush"
+        };
+        return "HighCard = " + this.highCard + "\ngrade = " + grades[this.grade - 1];
     }
 }

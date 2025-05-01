@@ -1,6 +1,3 @@
-import data.Grade;
-import data.Kind;
-
 import java.util.Arrays;
 
 public class DeckTest {
