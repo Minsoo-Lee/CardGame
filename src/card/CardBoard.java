@@ -17,10 +17,13 @@ public class CardBoard implements Comparable<CardBoard> {
 
     @Override
     public int compareTo(CardBoard cb) {
-        if (this.highCard.getNumber() == cb.highCard.getNumber()) {
-            return cb.highCard.getKind() - this.highCard.getKind();
-        } else {
-            return cb.highCard.getNumber() - this.highCard.getNumber();
+        if (this.player.getRank().getGrade() == cb.player.getRank().getGrade()) {
+            if (this.highCard.getNumber() == cb.highCard.getNumber()) {
+                return this.highCard.getKind() - cb.highCard.getKind();
+            } else {
+                return this.highCard.getNumber() - cb.highCard.getNumber();
+            }
         }
+        else return this.player.getRank().getGrade() - cb.player.getRank().getGrade();
     }
 }

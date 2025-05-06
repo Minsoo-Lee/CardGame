@@ -9,7 +9,7 @@ public class Dealer {
     public Dealer() {
         deck = new Deck();
         deck.shuffle();
-        cardBoard = new CardBoard[Player.CARD_NUM];
+        cardBoard = new CardBoard[4];
     }
 
     public void initCards() {
@@ -35,6 +35,6 @@ public class Dealer {
     public Player getWinner() {
         Arrays.sort(cardBoard);
 
-        return cardBoard[0].getPlayer();
+        return cardBoard[3].getPlayer();
     }
 }

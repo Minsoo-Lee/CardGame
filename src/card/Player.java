@@ -1,6 +1,6 @@
 package card;
 
-public class Player {
+public class Player implements Comparable<Player> {
 
     public static final int CARD_NUM = 5;
 
@@ -17,6 +17,14 @@ public class Player {
         win = 0;
         money = 10000;
         rank = new Rank();
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getNickname() {
+        return nickname;
     }
 
     public void setCard(int index, Card card) {
@@ -52,7 +60,7 @@ public class Player {
     }
 
     public void setMoney() {
-        this.money++;
+        this.money += 100;
     }
 
     public int getMoney() {
@@ -73,5 +81,10 @@ public class Player {
 
     public void showRank() {
         System.out.println("Rank = " + this.rank.getGrade() + " / HighCard = " + this.rank.getHighCard());
+    }
+
+    @Override
+    public int compareTo(Player p) {
+        return this.getWin() - p.getWin();
     }
 }

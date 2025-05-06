@@ -173,7 +173,8 @@ public class Rank {
 
     public Card[] cloneCards(Card[] cards) {
         Card[] cardTmp = new Card[Player.CARD_NUM];
-        for (int i = 0; i < cardTmp.length; i++) {
+
+        for (int i = 0; i < cards.length; i++) {
             cardTmp[i] = new Card(cards[i].getNumber(), cards[i].getKind());
         }
         Arrays.sort(cardTmp, new SortByKind());
