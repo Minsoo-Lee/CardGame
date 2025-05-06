@@ -4,21 +4,31 @@ public class Rank {
     private Card highCard;
     private int grade;
 
-    // [1 2 2] [2 1 2] [2 2 1]
-    // 양 쪽 끝에서 비교
-    private boolean isTowPairs(Card[] cards) {
-        int[] pointers = new int[3];
-        if (pointers[2] == 4) {
-            if (pointers[1] == 2 && (pointers[0] == 0 || pointers[1] == 1)) {
-                this.highCard = cards[4];
-                return true;
-            }
-            if (pointers[0] == 1 && pointers[1] == 3) {
-                this.highCard = cards[3];
+    private boolean isTriple (Card[] cards) {
+        for (int i = 0; i < cards.length - 1; i++) {
+            if (cards[i].getNumber() == cards[i + 1].getNumber()) {
+                this.highCard = cards[i];
                 return true;
             }
         }
         return false;
+    }
+
+    // 양 쪽 끝에서 포인터를 조여오며 짝 찾기
+    // 풀하우스도 같이 판별되긴 하지만, 위에서 이미 풀하우스는 거르고 들어옴
+    private boolean isTowPairs(Card[] cards) {
+        int p1 = 0, p2 = Player.CARD_NUM - 1;
+        int count = 0;
+
+        for (p1 = 1; p1 < Player.CARD_NUM; p1++) {
+            if (cards[p1].getNumber() == cards[p1 - 1].getNumber())
+                break;
+        }
+        for (p2 = Player.CARD_NUM - 2; p2 >= 0; p2--) {
+            if (cards[p2].getNumber() == cards[p2 + 1].getNumber())
+                break;
+        }
+        return p1 < p2 ? true : false;
     }
 
     private boolean isOnePair(Card[] cards) {
@@ -38,23 +48,6 @@ public class Rank {
             this.highCard = cards[0];
             this.grade = Grade.high;
         }
-    }
-
-    // 포인터를 3개 써야 할 때는 p3 = 5, p2 < 5
-    //      ex. twopair, triple
-    // 포인터를 2개 써야 할 때는 p2 = 5
-    //      ex. flush, fullhouse
-    private void getPoint(int[] cards, int[] pointers, int start, int count) {
-        if (count == 3) return ;
-        for (int i = start; i < 4; i++) {
-            if (cards[i] != cards[i + 1]) {
-                pointers[count] = i;
-                getPoint(cards, pointers, i + 1, count + 1);
-                return ;
-            }
-        }
-        pointers[count] = 5;
-        getPoint(cards, pointers, 5, count + 1);
     }
 
     @Override
