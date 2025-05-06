@@ -1,9 +1,10 @@
+package card;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class Deck {
     final static int CARD_NUM = 52;
-//    Card cards[] = new Card[CARD_NUM];
+//    card.Card cards[] = new card.Card[CARD_NUM];
 
     // 중복 방지를 위해 ArrayList로 셋업
     private ArrayList<Card> cards = new ArrayList<>();

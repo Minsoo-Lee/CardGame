@@ -1,10 +1,13 @@
+package card;
+
 public class Player {
 
     public static final int CARD_NUM = 5;
 
     private String nickname;
-    private Card[] cards;
-    private int win;
+    private final Card[] cards;
+    private int win = 0;
+    private int lose = 0;
     private int money;
     private Rank rank;
 
@@ -16,7 +19,7 @@ public class Player {
         rank = new Rank();
     }
 
-    public void getCard(int index, Card card) {
+    public void setCard(int index, Card card) {
         cards[index] = card;
     }
 
@@ -25,11 +28,35 @@ public class Player {
     }
 
     public void setRank() {
-        rank.getGrade(this.cards);
+        rank.setGrade(this.cards);
     }
 
     public Rank getRank() {
         return rank;
+    }
+
+    public void setWin() {
+        this.win++;
+    }
+
+    public int getWin() {
+        return this.win;
+    }
+
+    public void setLose() {
+        this.lose++;
+    }
+
+    public int getLose() {
+        return this.lose;
+    }
+
+    public void setMoney() {
+        this.money++;
+    }
+
+    public int getMoney() {
+        return this.money;
     }
 
     public void clearCards() {
@@ -42,5 +69,9 @@ public class Player {
         for (int i = 0; i < CARD_NUM; i++) {
             System.out.println(cards[i]);
         }
+    }
+
+    public void showRank() {
+        System.out.println("Rank = " + this.rank.getGrade() + " / HighCard = " + this.rank.getHighCard());
     }
 }
